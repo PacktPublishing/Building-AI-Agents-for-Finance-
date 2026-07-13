@@ -34,7 +34,11 @@ fall back to reading from the environment when running locally.
 ```text
 Chapter 1/        First-principles labs (Hanane)
 Chapter 2/        Memory and tool patterns (Hanane)
-Chapter 3/        Framework comparison — one lab per framework
+Chapter 3/        Framework comparison — one lab notebook per framework,
+                  plus bakeoff/ (the chapter's printed implementations with
+                  captured outputs and pinned requirements), templates/
+                  (decision-matrix spreadsheet and scoring script), and
+                  diagrams/ (figure sources)
 Chapter 5/        Deep search agent (planner + full pipeline)
 Chapter 7/        Multi-agent systems and architectural styles
 Chapter 9/        Insurance workflows (claims, fraud, underwriting)

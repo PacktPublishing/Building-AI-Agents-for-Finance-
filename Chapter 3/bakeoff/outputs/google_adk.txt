@@ -1,0 +1,30 @@
+# google_adk — bake-off output
+# token usage: input=1390 output=537 total=1927
+
+**Investment Memo: P/E Ratio Comparison - Apple (AAPL) vs. JPMorgan (JPM)**
+
+Date: October 26, 2023
+
+**Subject: Comparative P/E Analysis of Apple Inc. (AAPL) and JPMorgan Chase & Co. (JPM)**
+
+This memo presents a comparative analysis of the Price-to-Earnings (P/E) ratios for Apple Inc. (AAPL) and JPMorgan Chase & Co. (JPM), based on the latest available financial data.
+
+**Apple Inc. (AAPL):**
+*   **Latest Stock Price:** $195.3
+*   **Earnings Per Share (EPS):** $6.67
+*   **Calculated P/E Ratio:** 29.28
+
+**JPMorgan Chase & Co. (JPM):**
+*   **Latest Stock Price:** $148.7
+*   **Earnings Per Share (EPS):** $12.61
+*   **Calculated P/E Ratio:** 11.79
+
+**Summary:**
+
+Apple Inc. (AAPL) currently trades at a P/E ratio of 29.28, which is significantly higher than JPMorgan Chase & Co. (JPM), which has a P/E ratio of 11.79.
+
+A higher P/E ratio typically suggests that investors are willing to pay a premium for each dollar of earnings, often indicating expectations of higher future growth or a perception of lower risk. Conversely, a lower P/E ratio may suggest that the market expects slower growth or perceives higher risk.
+
+In this comparison, AAPL's higher P/E ratio relative to JPM could reflect investor confidence in Apple's growth prospects within the technology sector, its strong brand, and consistent innovation. JPM's lower P/E ratio is more aligned with the financial services sector, which traditionally exhibits lower P/E multiples compared to growth-oriented technology companies.
+
+This analysis is based solely on P/E ratios and does not encompass other crucial financial metrics or qualitative factors that would be essential for a comprehensive investment decision.

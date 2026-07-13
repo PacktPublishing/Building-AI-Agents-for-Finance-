@@ -1,0 +1,34 @@
+# llamaindex — bake-off output
+
+Brief memo — P/E comparison: Apple (AAPL) vs JPMorgan (JPM)
+Date: 2026-07-12
+
+Data (latest retrieved)
+- Apple (AAPL): price = $195.30, EPS = $6.67 → P/E = 29.28
+- JPMorgan (JPM): price = $148.70, EPS = $12.61 → P/E = 11.79
+
+Key takeaways
+- AAPL’s P/E (≈29.3) is about 2.5× JPM’s P/E (≈11.8). The market is valuing Apple at a much higher multiple of current earnings than JPMorgan.
+- Interpretation:
+  - Higher P/E for AAPL implies the market prices in stronger expected growth, greater franchise value, or a premium for earnings quality/visibility typical of large-cap tech/hardware-platform companies.
+  - Lower P/E for JPM is typical for large banks and can reflect slower earnings growth expectations, greater sensitivity to the economic/interest-rate cycle, or a value/discounted valuation relative to tech multiples.
+- What it does not prove:
+  - P/E alone doesn’t tell whether a stock is “cheap” or “expensive” without considering growth (forward EPS, revenue growth), capital structure, dividend policy, regulatory context (for banks), share buybacks, or differences in accounting. For banks, metrics like price-to-book and return on equity are important complements.
+
+Risks & caveats
+- Cyclicality: bank earnings (JPM) are more cyclical and interest-rate sensitive; tech/consumer-device earnings (AAPL) are affected by product cycles and services-growth sustainability.
+- EPS basis: ensure you compare the same EPS basis (trailing vs forward). The values above are the retrieved latest price and EPS; for investment decisions use forward estimates and multi-year growth projections.
+- One-off items, buybacks, or credit events can distort short-term EPS and P/E.
+
+Actionable next steps (suggested)
+- Check forward P/E (analyst 12-month EPS consensus) and implied growth rates for both names.
+- For AAPL: evaluate services growth trajectory, gross margin trends, and buyback impact on EPS.
+- For JPM: review net interest margin outlook, credit loss provisions, capital ratios, and dividend outlook.
+- Consider valuation-adjusted metrics (PEG ratio), sector medians, and your investment horizon/return requirements.
+
+Bottom line (recommendation)
+- If you prioritize growth and are willing to pay a premium for durable platform economics, AAPL’s higher P/E is consistent with that profile.
+- If you prefer a lower multiple with more value/income characteristics and exposure to financials, JPM’s lower P/E may be more attractive, subject to macro/credit risk views.
+- Final choice should follow due diligence on forward earnings, growth assumptions, and risk tolerance.
+
+If you want, I can fetch forward EPS estimates, compute forward P/Es, and produce a short comparative valuation table.

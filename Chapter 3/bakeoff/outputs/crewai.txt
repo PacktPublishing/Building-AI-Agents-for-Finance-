@@ -1,0 +1,27 @@
+# crewai — bake-off output
+# token usage: input=1547 output=1223 total=2770
+
+Investment Memo — Comparative Valuation: Apple (AAPL) vs. JPMorgan Chase (JPM)
+Date: 2026-07-12
+
+Summary data (source: latest market data)
+- Apple (AAPL): Price = $195.30; EPS (TTM) = $6.67; P/E = 195.30 / 6.67 = 29.28
+- JPMorgan (JPM): Price = $148.70; EPS (TTM) = $12.61; P/E = 148.70 / 12.61 = 11.79
+
+Analysis
+- Relative valuation: AAPL’s P/E (29.28) is materially higher than JPM’s (11.79). On a simple price-to-earnings basis, the market is assigning a significantly larger earnings multiple to Apple than to JPMorgan.
+- Interpretation:
+  - Apple (higher P/E) — implies a growth premium: investors are paying more per dollar of current earnings for expected future growth, durable brand/durable margins, and possible recurring revenue expansion. Higher P/E also implies greater sensitivity to disappointments in growth or margin trends.
+  - JPMorgan (lower P/E) — implies value/earnings yield: the bank is trading closer to current earnings power. Lower P/E can reflect financial-sector cyclicality, sensitivity to interest rates/regulatory risk, and lower expected earnings growth relative to high-growth tech names.
+- Risk/profile tradeoffs:
+  - AAPL: more growth-oriented exposure, likely lower dividend yield (relative to banks), greater multiple risk if growth slows.
+  - JPM: more value/income orientation, earnings tied to interest rate environment and credit cycle; potentially steadier earnings in a stable macro but more cyclical overall.
+
+Recommendation (short)
+- For growth-biased investors willing to pay a premium for product/earnings expansion and franchise quality: AAPL is the preferred pick despite its higher P/E, acknowledging higher multiple risk.
+- For value-seeking or income-oriented investors who prefer a lower valuation multiple and exposure to financials/interest-rate dynamics: JPM is the preferred pick based on its substantially lower P/E.
+- For diversified portfolios: consider allocating to both to balance growth (AAPL) and value/income/cyclical exposure (JPM).
+
+Notes
+- P/E calculated as Price / EPS using the latest price and trailing twelve-month EPS provided above.
+- This memo focuses only on P/E comparison and does not substitute for a full fundamental or portfolio suitability analysis (e.g., forward earnings, balance sheet strength, dividends, macro outlook).

@@ -1,0 +1,18 @@
+# openai_agents_sdk — bake-off output
+# token usage: input=1606 output=1045 total=2651
+
+Investment memo — P/E comparison (latest data)
+
+Data
+- Apple (AAPL): price = $195.30, EPS = $6.67, P/E = 29.28
+- JPMorgan (JPM): price = $148.70, EPS = $12.61, P/E = 11.79
+
+Takeaway
+- AAPL’s P/E (~29.3) is materially higher than JPM’s (~11.8), implying the market prices Apple for higher growth or a premium for its cashflow/stability.
+- JPM’s lower P/E suggests a value/earnings-focused valuation typical of banks (or lower growth expectations/greater earnings sensitivity to cycles).
+
+Implication for investors
+- If your mandate targets growth and tech exposure, AAPL’s premium may be justified; expect higher multiples and sensitivity to growth misses.
+- If you favor earnings yield, income stability, or cyclically cheaper valuations, JPM appears more value-oriented at current multiples.
+
+(Analysis based on the provided price and EPS figures.)

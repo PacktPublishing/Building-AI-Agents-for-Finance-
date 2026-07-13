@@ -1,0 +1,10 @@
+dimension,name,weight,Google ADK,CrewAI,AutoGen,OpenAI Agents SDK,PydanticAI,LangChain/LangGraph,Mistral,Claude SDK,LlamaIndex
+D1,Task complexity fit,0.15,5,4,4,4,2,5,3,3,3
+D2,Ecosystem fit,0.10,5,3,4,5,4,4,4,4,4
+D3,Compliance and auditability,0.15,5,2,3,5,4,3,2,5,3
+D4,Data-centric vs orchestration-centric,0.15,4,4,4,4,2,5,3,3,5
+D5,Experimentation vs production,0.05,4,5,4,4,4,4,4,4,4
+D6,Cost and performance,0.10,4,3,3,4,4,3,5,3,3
+D7,Safety and governance posture,0.15,5,2,3,4,3,3,3,5,3
+D8,Typed outputs and validation,0.10,3,3,3,3,5,3,3,3,3
+D9,Interoperability and portability,0.05,3,4,4,3,4,5,5,3,4

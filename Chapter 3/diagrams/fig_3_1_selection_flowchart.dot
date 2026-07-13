@@ -1,0 +1,67 @@
+// Figure 3.1 — Decision flowchart for framework selection
+digraph framework_selection {
+    rankdir=TB;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=11, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=9];
+    nodesep=0.35;
+    ranksep=0.45;
+
+    start [label="Start:\nchoose framework", shape=box, style="filled,rounded", fillcolor="#4a90d9", fontcolor=white, color="#34699c"];
+    final [label="Final stack", shape=box, style="filled,rounded", fillcolor="#50c878", color="#3a9a5c"];
+
+    // Decisions (diamonds)
+    node [shape=diamond, style=filled, fillcolor="#e8e4f8", color="#5a4bc7", fontsize=10];
+    q_onprem  [label="On-prem or\nEU-only?"];
+    q_gov     [label="Governance and\ncompliance\ncritical?"];
+    q_legacy  [label="Legacy\nsystems?"];
+    q_work    [label="Workload\ntype?"];
+    q_team    [label="Team\nstyle?"];
+    q_schema  [label="Strict\nschemas?"];
+    q_opt     [label="Optimize\nfor?"];
+
+    // Outcomes (boxes)
+    node [shape=box, style="filled,rounded", fontsize=10];
+    o_onprem [label="Self-hosted open weights\n(Mistral, Llama, Qwen, gpt-oss)\nvia vLLM + LangGraph\n+ LlamaIndex + PydanticAI", fillcolor="#fdeeda", color="#c4841c"];
+    o_legacy [label="Claude Agent SDK\n+ computer use",                      fillcolor="#fdeeda", color="#c4841c"];
+    o_gov    [label="OpenAI Agents SDK\nor Google ADK",                fillcolor="#fdeeda", color="#c4841c"];
+    o_rag    [label="LlamaIndex\n+ LangGraph",                         fillcolor="#dbeafe", color="#34699c"];
+    o_graph  [label="LangGraph",                                       fillcolor="#dbeafe", color="#34699c"];
+    o_conv   [label="AutoGen",                                         fillcolor="#dbeafe", color="#34699c"];
+    o_roles  [label="CrewAI",                                          fillcolor="#dbeafe", color="#34699c"];
+    o_pyd    [label="+ PydanticAI\nvalidation layer",                  fillcolor="#f3e8ff", color="#5a4bc7"];
+    o_cost   [label="Small hosted tier\n(mini / Flash / Haiku)\nor self-hosted open weights",       fillcolor="#e6f7e9", color="#3a9a5c"];
+    o_feat   [label="OpenAI Agents SDK /\nGoogle ADK / LangGraph",     fillcolor="#e6f7e9", color="#3a9a5c"];
+
+    start -> q_onprem;
+    q_onprem -> o_onprem [label=" Yes"];
+    q_onprem -> q_gov    [label=" No"];
+    o_onprem -> final;
+
+    q_gov -> q_legacy [label=" Yes"];
+    q_gov -> q_work   [label=" No"];
+    q_legacy -> o_legacy [label=" Yes"];
+    q_legacy -> o_gov    [label=" No"];
+
+    q_work -> o_rag  [label=" RAG-heavy"];
+    q_work -> q_team [label=" Orchestration"];
+    q_team -> o_graph [label=" Graphs"];
+    q_team -> o_conv  [label=" Conversations"];
+    q_team -> o_roles [label=" Roles"];
+
+    o_legacy -> q_schema;
+    o_gov    -> q_schema;
+    o_rag    -> q_schema;
+    o_graph  -> q_schema;
+    o_conv   -> q_schema;
+    o_roles  -> q_schema;
+
+    q_schema -> o_pyd [label=" Yes"];
+    q_schema -> q_opt [label=" No"];
+    o_pyd -> q_opt;
+
+    q_opt -> o_cost [label=" Cost / latency"];
+    q_opt -> o_feat [label=" Features"];
+    o_cost -> final;
+    o_feat -> final;
+}

@@ -1,0 +1,20 @@
+# Chapter 3 bake-off — pinned at the versions the implementations were
+# validated against. Two of the frameworks (crewai, google-adk) have
+# heavy dependency trees; install them in a separate virtual environment
+# if you hit resolver conflicts.
+
+# Walked through in the chapter
+openai-agents==0.18.2
+langchain==1.3.13
+langchain-openai==1.3.5
+autogen-agentchat==0.7.5
+autogen-ext[openai]==0.7.5
+pydantic-ai-slim[openai]==2.9.0
+
+# Remaining implementations
+llama-index-core==0.14.23
+llama-index-llms-openai==0.7.9
+mistralai==2.6.0
+crewai==1.15.2
+google-adk==2.4.0
+claude-agent-sdk==0.2.116

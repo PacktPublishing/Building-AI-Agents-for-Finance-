@@ -1,0 +1,219 @@
+"""
+validator.py
+=============
+Deterministic validation for the Deep Search Agent.
+
+Validates research findings using code-based checks rather than
+LLM-based verification. This follows the key insight from the
+AI Alliance Deep Research Agent: deterministic validation is
+faster, cheaper, and more reliable than asking an LLM to verify.
+
+Checks include:
+- Completeness: all tasks completed, all companies covered
+- Numerical validity: metrics in reasonable ranges
+- Consistency: no contradictory data points (e.g., operating
+  margin exceeding gross margin)
+"""
+
+from common import (
+    ResearchPlan,
+    CompanyMetrics,
+    ValidationResult,
+    TaskStatus,
+)
+
+
+def validate_research(
+    plan: ResearchPlan,
+    results: dict[int, str],
+    required_tickers: list[str],
+) -> ValidationResult:
+    """Validate research findings using deterministic checks.
+
+    Args:
+        plan: The executed research plan.
+        results: Mapping of task_id -> result string.
+        required_tickers: Tickers that must have data in the results.
+
+    Returns:
+        ValidationResult with errors, warnings, and gaps.
+    """
+    errors: list[str] = []
+    warnings: list[str] = []
+    gaps: list[str] = []
+
+    # ---------------------------------------------------------------
+    # Check 1: Task completion
+    # ---------------------------------------------------------------
+    failed_tasks = [t for t in plan.sub_tasks if t.status == TaskStatus.FAILED]
+    for task in failed_tasks:
+        gaps.append(f"Task {task.id} failed: {task.description}")
+
+    completed_count = sum(
+        1 for t in plan.sub_tasks if t.status == TaskStatus.COMPLETED
+    )
+    total_count = len(plan.sub_tasks)
+    if completed_count < total_count:
+        completion_pct = completed_count / total_count * 100
+        if completion_pct < 50:
+            errors.append(
+                f"Only {completed_count}/{total_count} tasks completed "
+                f"({completion_pct:.0f}%) — insufficient data for synthesis"
+            )
+        else:
+            warnings.append(
+                f"{completed_count}/{total_count} tasks completed "
+                f"({completion_pct:.0f}%)"
+            )
+
+    # ---------------------------------------------------------------
+    # Check 2: Required tickers covered
+    # ---------------------------------------------------------------
+    found_tickers: set[str] = set()
+    for result in results.values():
+        for ticker in required_tickers:
+            if ticker.upper() in result.upper():
+                found_tickers.add(ticker.upper())
+
+    missing = set(t.upper() for t in required_tickers) - found_tickers
+    for ticker in missing:
+        gaps.append(f"Missing data for required ticker: {ticker}")
+
+    # ---------------------------------------------------------------
+    # Check 3: Numerical reasonableness (parse CompanyMetrics)
+    # ---------------------------------------------------------------
+    parsed_metrics: list[CompanyMetrics] = []
+    for task_id, result in results.items():
+        try:
+            metrics = CompanyMetrics.model_validate_json(result)
+            parsed_metrics.append(metrics)
+            _validate_metrics(metrics, errors, warnings)
+        except Exception:
+            # Not all results are CompanyMetrics — that's expected
+            pass
+
+    # ---------------------------------------------------------------
+    # Check 4: Cross-company consistency
+    # ---------------------------------------------------------------
+    if len(parsed_metrics) >= 2:
+        _validate_cross_company(parsed_metrics, warnings)
+
+    # ---------------------------------------------------------------
+    # Determine overall validity
+    # ---------------------------------------------------------------
+    is_valid = len(errors) == 0 and len(gaps) == 0
+
+    return ValidationResult(
+        is_valid=is_valid,
+        errors=errors,
+        warnings=warnings,
+        gaps=gaps,
+    )
+
+
+def _validate_metrics(
+    metrics: CompanyMetrics,
+    errors: list[str],
+    warnings: list[str],
+) -> None:
+    """Validate a single CompanyMetrics instance for reasonableness."""
+    ticker = metrics.ticker
+
+    # P/E ratio checks
+    if metrics.pe_ratio < 0:
+        warnings.append(
+            f"{ticker}: Negative P/E ratio ({metrics.pe_ratio}) "
+            f"— company may be unprofitable or EPS data incorrect"
+        )
+    elif metrics.pe_ratio > 300:
+        warnings.append(
+            f"{ticker}: Extremely high P/E ratio ({metrics.pe_ratio}) "
+            f"— verify EPS data or check if company is pre-profit"
+        )
+
+    # Margin range checks
+    if metrics.gross_margin != 0 and not (-10 <= metrics.gross_margin <= 100):
+        errors.append(
+            f"{ticker}: Gross margin {metrics.gross_margin}% "
+            f"outside plausible range [-10, 100]"
+        )
+
+    if metrics.operating_margin != 0 and not (-100 <= metrics.operating_margin <= 100):
+        errors.append(
+            f"{ticker}: Operating margin {metrics.operating_margin}% "
+            f"outside plausible range [-100, 100]"
+        )
+
+    # Margin consistency: operating margin should not exceed gross margin
+    # (unless both are near zero / default)
+    if (
+        metrics.gross_margin > 5
+        and metrics.operating_margin > metrics.gross_margin + 1
+    ):
+        errors.append(
+            f"{ticker}: Operating margin ({metrics.operating_margin}%) "
+            f"exceeds gross margin ({metrics.gross_margin}%) "
+            f"— this is mathematically impossible"
+        )
+
+    # Revenue growth sanity
+    if abs(metrics.revenue_growth) > 500:
+        warnings.append(
+            f"{ticker}: Revenue growth of {metrics.revenue_growth}% "
+            f"is extreme — verify data accuracy"
+        )
+
+    # Revenue sanity (should be positive for established companies)
+    if metrics.revenue <= 0:
+        warnings.append(
+            f"{ticker}: Revenue is ${metrics.revenue}M "
+            f"— verify this is correct"
+        )
+
+    # Market cap sanity
+    if metrics.market_cap < 0:
+        errors.append(f"{ticker}: Negative market cap (${metrics.market_cap}B)")
+
+
+def _validate_cross_company(
+    metrics_list: list[CompanyMetrics],
+    warnings: list[str],
+) -> None:
+    """Cross-validate metrics across multiple companies."""
+    # Check that all companies report the same fiscal period
+    periods = {m.period for m in metrics_list}
+    if len(periods) > 1:
+        tickers_periods = ", ".join(
+            f"{m.ticker}={m.period}" for m in metrics_list
+        )
+        warnings.append(
+            f"Fiscal period mismatch across companies: {tickers_periods}. "
+            f"Comparisons may not be apples-to-apples."
+        )
+
+
+def format_validation(result: ValidationResult) -> str:
+    """Format a ValidationResult for display."""
+    lines = []
+
+    if result.is_valid:
+        lines.append("[PASS] Validation passed")
+    else:
+        lines.append("[FAIL] Validation failed")
+
+    if result.errors:
+        lines.append("\n  Errors:")
+        for e in result.errors:
+            lines.append(f"    [X] {e}")
+
+    if result.warnings:
+        lines.append("\n  Warnings:")
+        for w in result.warnings:
+            lines.append(f"    [!] {w}")
+
+    if result.gaps:
+        lines.append("\n  Gaps:")
+        for g in result.gaps:
+            lines.append(f"    [ ] {g}")
+
+    return "\n".join(lines)

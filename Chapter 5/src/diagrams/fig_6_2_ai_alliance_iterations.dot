@@ -1,0 +1,64 @@
+// Figure 6.2 — AI Alliance's Three Architectural Iterations
+digraph iterations {
+    rankdir=LR;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=10, style="filled,rounded", shape=box, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=9, penwidth=1.2];
+    nodesep=0.5;
+    ranksep=0.8;
+
+    // Take 1
+    subgraph cluster_take1 {
+        label="Take 1: Too Simple";
+        labeljust=l;
+        fontsize=11;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#cc5555";
+        bgcolor="#fdf5f5";
+        margin=12;
+
+        t1a [label="LLM + Tools\n(basic orchestrator)", fillcolor="#ffdada", color="#cc5555"];
+        t1b [label="Hallucinations\nContext bloat\nUnreliable",         fillcolor="#ff6b6b", fontcolor=white, color="#cc5555"];
+
+        t1a -> t1b;
+    }
+
+    // Take 2
+    subgraph cluster_take2 {
+        label="Take 2: Too Complex";
+        labeljust=l;
+        fontsize=11;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#cc5555";
+        bgcolor="#fdf5f5";
+        margin=12;
+
+        t2a [label="Dynamic roles\nLLM verification\nAdaptive prompts", fillcolor="#ffdada", color="#cc5555"];
+        t2b [label="Worse performance\nHigher cost\nUnpredictable",     fillcolor="#ff6b6b", fontcolor=white, color="#cc5555"];
+
+        t2a -> t2b;
+    }
+
+    // Take 3
+    subgraph cluster_take3 {
+        label="Take 3: Right-Sized  ✓";
+        labeljust=l;
+        fontsize=11;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#1e8449";
+        bgcolor="#f0faf0";
+        margin=12;
+
+        t3a [label="Upfront planning\nCode verification\nReplan on failure",  fillcolor="#d5f5e3", color="#1e8449"];
+        t3b [label="Reliable output\nLower cost\nPredictable",               fillcolor="#50c878", fontcolor=white, color="#1e8449"];
+
+        t3a -> t3b;
+    }
+
+    // Progression arrows
+    t1b -> t2a [label="\"Add more\ncomplexity\"", style=dashed, color="#999999", fontcolor="#999999"];
+    t2b -> t3a [label="\"Simplify with\ncode checks\"", style=dashed, color="#999999", fontcolor="#999999"];
+}

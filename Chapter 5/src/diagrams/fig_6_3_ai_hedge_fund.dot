@@ -1,0 +1,41 @@
+// Figure 6.3 — ai-hedge-fund Multi-Perspective Architecture
+digraph hedge_fund {
+    rankdir=LR;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=10, style="filled,rounded", shape=box, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=8];
+    nodesep=0.3;
+    ranksep=0.7;
+
+    stock [label="NVDA", fillcolor="#4a90d9", fontcolor=white, color="#34699c", fontsize=13, style="filled,rounded,bold", width=0.8];
+
+    // Analyst agents
+    dam  [label="Damodaran\n─────────\nValuation",    fillcolor="#fef3c7", color="#b7950b"];
+    gra  [label="Graham\n────────\nValue",            fillcolor="#d5f5e3", color="#27ae60"];
+    ack  [label="Ackman\n────────\nActivist",         fillcolor="#e8d5f5", color="#8e44ad"];
+    wood [label="Wood\n────────\nGrowth",             fillcolor="#ffdada", color="#cc5555"];
+    bur  [label="Burry\n────────\nContrarian",        fillcolor="#d5e8f5", color="#2980b9"];
+    mun  [label="Munger\n────────\nQuality",          fillcolor="#f5e0d5", color="#cc7a2e"];
+
+    // Portfolio manager
+    pm [label="Portfolio\nManager\n─────────────\nSynthesizes\nall perspectives", fillcolor="#f5a623", color="#c4841c", fontsize=10, style="filled,rounded,bold"];
+
+    // Recommendation
+    rec [label="Investment\nRecommendation", fillcolor="#50c878", fontcolor=white, color="#1e8449", style="filled,rounded,bold"];
+
+    stock -> dam;
+    stock -> gra;
+    stock -> ack;
+    stock -> wood;
+    stock -> bur;
+    stock -> mun;
+
+    dam  -> pm;
+    gra  -> pm;
+    ack  -> pm;
+    wood -> pm;
+    bur  -> pm;
+    mun  -> pm;
+
+    pm -> rec;
+}

@@ -1,0 +1,64 @@
+// Figure 6.1 — Dexter's Architecture
+digraph dexter {
+    rankdir=TB;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=10, style="filled,rounded", shape=box, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=8];
+    compound=true;
+    nodesep=0.4;
+    ranksep=0.5;
+
+    user [label="User\n'Analyze NVDA's\ncompetitive position'", fillcolor="#4a90d9", fontcolor=white, color="#34699c", fontsize=11, style="filled,rounded,bold"];
+
+    subgraph cluster_agents {
+        label="Dexter's Four-Agent Loop";
+        labeljust=l;
+        fontsize=12;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#2c3e50";
+        bgcolor="#f0f4f8";
+        margin=14;
+
+        planner   [label="Planner Agent\n──────────────\nGenerates step-by-step\nresearch plan",         fillcolor="#f5a623", color="#c4841c"];
+        action    [label="Action Agent\n─────────────\nExecutes plan using\nfinancial tools",         fillcolor="#7b68ee", fontcolor=white, color="#5a4bc7"];
+        validator [label="Validation Agent\n─────────────────\nChecks completeness\nand accuracy",      fillcolor="#50c878", color="#3a9a5c"];
+        answer    [label="Answer Agent\n──────────────\nSynthesizes final\nresearch report",          fillcolor="#4ecdc4", color="#3aaba3"];
+
+        planner   -> action;
+        action    -> validator;
+        validator -> planner [label="Gaps found", style=dashed, color="#cc5555", fontcolor="#cc5555"];
+        validator -> answer  [label="Valid"];
+    }
+
+    subgraph cluster_tools {
+        label="Tool Layer (Meta-Tool Pattern)";
+        labeljust=l;
+        fontsize=11;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#cc7a2e";
+        bgcolor="#fff8f0";
+        margin=12;
+
+        meta [label="financial_search\n─────────────────\nRoutes via internal LLM", fillcolor="#ff9f43", color="#cc7a2e", fontsize=10];
+
+        fd    [label="Financial\nDatasets API", fillcolor="#d5e8f5", color="#2980b9", shape=component];
+        edgar [label="SEC\nEDGAR",             fillcolor="#d5e8f5", color="#2980b9", shape=component];
+        exa   [label="Exa Web\nSearch",         fillcolor="#d5e8f5", color="#2980b9", shape=component];
+        pw    [label="Playwright\nBrowser",     fillcolor="#d5e8f5", color="#2980b9", shape=component];
+
+        meta -> fd;
+        meta -> edgar;
+        meta -> exa;
+        meta -> pw;
+
+        {rank=same; fd; edgar; exa; pw}
+    }
+
+    report [label="Research Report", fillcolor="#4a90d9", fontcolor=white, color="#34699c", style="filled,rounded,bold"];
+
+    user   -> planner [lhead=cluster_agents];
+    action -> meta    [lhead=cluster_tools];
+    answer -> report;
+}

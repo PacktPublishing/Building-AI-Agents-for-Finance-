@@ -1,0 +1,27 @@
+// Figure 3.3 — Meta-Tool Routing Pattern
+digraph meta_tool {
+    rankdir=TB;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=11, style="filled,rounded", shape=box, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=9];
+    nodesep=0.5;
+    ranksep=0.6;
+
+    agent [label="Research Agent", fillcolor="#4a90d9", fontcolor=white, color="#34699c", fontsize=12, style="filled,rounded,bold"];
+
+    router [label="Meta-Tool Router\n─────────────────\nUses fast LLM to classify\nquery type and dispatch", fillcolor="#f5a623", color="#c4841c", fontsize=10];
+
+    api   [label="Financial API\nMetrics, prices,\nratios",   fillcolor="#4ecdc4", color="#3aaba3"];
+    sec   [label="SEC EDGAR\n10-K, 10-Q, 8-K",              fillcolor="#4ecdc4", color="#3aaba3"];
+    web   [label="Web Search\nNews, articles,\nanalysis",    fillcolor="#4ecdc4", color="#3aaba3"];
+    trans [label="Transcripts\nEarnings calls,\nQ&A",        fillcolor="#4ecdc4", color="#3aaba3"];
+
+    agent -> router [label="financial_search(query)"];
+
+    router -> api   [label="financial_api"];
+    router -> sec   [label="sec_filing"];
+    router -> web   [label="web_search"];
+    router -> trans  [label="transcript"];
+
+    {rank=same; api; sec; web; trans}
+}

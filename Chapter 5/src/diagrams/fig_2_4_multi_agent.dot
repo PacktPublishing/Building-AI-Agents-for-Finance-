@@ -1,0 +1,27 @@
+// Figure 2.4 — Multi-Agent Approach with Specialized Roles
+digraph multi_agent {
+    rankdir=LR;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=11, style="filled,rounded", shape=box, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=9];
+    nodesep=0.4;
+    ranksep=0.5;
+
+    q [label="Research Question", fillcolor="#4a90d9", fontcolor=white, color="#34699c"];
+
+    planner   [label="Planner Agent\nCreates research plan",             fillcolor="#f5a623", color="#c4841c"];
+    action    [label="Action Agent\nExecutes tools,\ngathers data",      fillcolor="#7b68ee", fontcolor=white, color="#5a4bc7"];
+    validator [label="Validation Agent\nChecks accuracy,\nidentifies gaps", fillcolor="#50c878", color="#3a9a5c"];
+    decision  [label="Pass?", shape=diamond, fillcolor="#f1948a", color="#c0392b", style=filled, width=1.0];
+    answer    [label="Answer Agent\nSynthesizes report",                 fillcolor="#4ecdc4", color="#3aaba3"];
+
+    report [label="Investment Memo", fillcolor="#4a90d9", fontcolor=white, color="#34699c"];
+
+    q         -> planner;
+    planner   -> action;
+    action    -> validator;
+    validator -> decision;
+    decision  -> planner [label="No", style=dashed, color="#c0392b", fontcolor="#c0392b"];
+    decision  -> answer  [label="Yes"];
+    answer    -> report;
+}

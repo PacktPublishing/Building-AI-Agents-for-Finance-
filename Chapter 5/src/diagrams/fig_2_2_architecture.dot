@@ -1,0 +1,68 @@
+// Figure 2.2 — Deep Research Agent Architecture
+digraph architecture {
+    rankdir=TB;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=10, style=filled, shape=box, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=8];
+    compound=true;
+    nodesep=0.5;
+    ranksep=0.6;
+
+    orch [label="Orchestrator\nControls the research loop", fillcolor="#4a90d9", fontcolor=white, color="#34699c", shape=box, style="filled,rounded,bold", fontsize=12];
+
+    subgraph cluster_core {
+        label="Core Components";
+        fontsize=11;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#666666";
+        bgcolor="#f8f9fa";
+        margin=12;
+
+        planner  [label="Planner\n──────────\nDecomposes questions\ninto sub-tasks",         fillcolor="#f5a623", color="#c4841c"];
+        executor [label="Tool Executor\n──────────────\nCalls APIs, searches,\nreads documents",  fillcolor="#7b68ee", fontcolor=white, color="#5a4bc7"];
+        valid    [label="Validator\n──────────\nChecks accuracy,\ncompleteness",              fillcolor="#50c878", color="#3a9a5c"];
+        synth    [label="Synthesizer\n────────────\nProduces structured\nreports",             fillcolor="#4ecdc4", color="#3aaba3"];
+    }
+
+    subgraph cluster_support {
+        label="Support Infrastructure";
+        fontsize=11;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#666666";
+        bgcolor="#fff8f0";
+        margin=12;
+
+        ctx     [label="Context Manager\n────────────────\nToken budgets,\nsummarization", fillcolor="#ff9f43", color="#cc7a2e"];
+        scratch [label="Scratchpad\n───────────\nIntermediate results,\naudit trail",      fillcolor="#ff9f43", color="#cc7a2e"];
+    }
+
+    subgraph cluster_tools {
+        label="Tool Layer";
+        fontsize=11;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#666666";
+        bgcolor="#f0f8ff";
+        margin=12;
+
+        t1 [label="Financial\nAPIs",     fillcolor="#d5e8f5", color="#2980b9", shape=component];
+        t2 [label="SEC\nEDGAR",          fillcolor="#d5e8f5", color="#2980b9", shape=component];
+        t3 [label="Web\nSearch",          fillcolor="#d5e8f5", color="#2980b9", shape=component];
+        t4 [label="News &\nTranscripts",  fillcolor="#d5e8f5", color="#2980b9", shape=component];
+    }
+
+    orch -> planner;
+    orch -> executor;
+    orch -> valid;
+    orch -> synth;
+    orch -> ctx;
+
+    executor -> scratch;
+    valid    -> scratch;
+    executor -> t1;
+    executor -> t2;
+    executor -> t3;
+    executor -> t4;
+}

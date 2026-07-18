@@ -1,0 +1,28 @@
+// Figure 2.1 — The Core Deep Research Loop
+digraph core_loop {
+    rankdir=LR;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=11, style=filled, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=9];
+    splines=true;
+    nodesep=0.5;
+    ranksep=0.6;
+
+    start [label="Research\nQuestion", shape=circle, fillcolor="#4a90d9", fontcolor=white, color="#34699c", width=1.0, fixedsize=true];
+
+    plan     [label="PLAN\n─────────────\nDecompose into\nsub-tasks with\ndependencies",    shape=box, style="filled,rounded", fillcolor="#f5a623", color="#c4841c"];
+    search   [label="SEARCH & EXECUTE\n─────────────────\nCall APIs, read filings,\nsearch web,\ncompute metrics", shape=box, style="filled,rounded", fillcolor="#7b68ee", fontcolor=white, color="#5a4bc7"];
+    validate [label="VALIDATE\n──────────\nCross-reference,\ncheck completeness,\nverify accuracy",   shape=box, style="filled,rounded", fillcolor="#50c878", color="#3a9a5c"];
+    decision [label="Gaps or\nerrors?", shape=diamond, fillcolor="#ff6b6b", fontcolor=white, color="#cc5555", width=1.3, height=0.9];
+    synth    [label="SYNTHESIZE\n────────────\nProduce structured\nresearch report",    shape=box, style="filled,rounded", fillcolor="#4ecdc4", color="#3aaba3"];
+
+    done [label="Investment\nMemo", shape=circle, fillcolor="#4a90d9", fontcolor=white, color="#34699c", width=1.0, fixedsize=true];
+
+    start    -> plan;
+    plan     -> search;
+    search   -> validate;
+    validate -> decision;
+    decision -> plan     [label=" Yes — replan", style=dashed, color="#cc5555", fontcolor="#cc5555"];
+    decision -> synth    [label=" No — complete"];
+    synth    -> done;
+}

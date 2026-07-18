@@ -1,0 +1,24 @@
+// Figure 5.1 — Model Routing by Complexity
+digraph model_routing {
+    rankdir=LR;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=11, style="filled,rounded", shape=box, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=9];
+    nodesep=0.5;
+    ranksep=0.8;
+
+    query [label="Incoming\nQuery", fillcolor="#4a90d9", fontcolor=white, color="#34699c"];
+
+    classifier [label="Complexity\nClassifier", shape=diamond, fillcolor="#f5a623", color="#c4841c", style=filled, width=1.2, height=1.0];
+
+    haiku  [label="Haiku / GPT-4o-mini\n──────────────────\n~$0.25 / M tokens\nSimple data lookups",  fillcolor="#4ecdc4", color="#3aaba3"];
+    sonnet [label="Sonnet / GPT-4o\n────────────────\n~$3 / M tokens\nStandard analysis",     fillcolor="#ff9f43", color="#cc7a2e"];
+    opus   [label="Opus / o1\n──────────\n~$15 / M tokens\nComplex reasoning",     fillcolor="#ff6b6b", fontcolor=white, color="#cc5555"];
+
+    query -> classifier;
+    classifier -> haiku  [label="Simple"];
+    classifier -> sonnet [label="Standard"];
+    classifier -> opus   [label="Complex"];
+
+    {rank=same; haiku; sonnet; opus}
+}

@@ -1,0 +1,120 @@
+// Figure 3.2 — Fiscal Period Alignment Across Three Companies
+digraph fiscal_periods {
+    rankdir=LR;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=9, style=filled, shape=box, penwidth=1.0, height=0.4];
+    edge [style=invis];
+    nodesep=0.05;
+    ranksep=0.4;
+
+    // Timeline header
+    subgraph cluster_timeline {
+        label="Calendar Timeline";
+        labeljust=l;
+        fontsize=11;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#999999";
+        bgcolor="#fafafa";
+        margin=8;
+
+        m_jul [label="Jul\n2023", fillcolor="#e8e8e8", color="#999"];
+        m_aug [label="Aug", fillcolor="#e8e8e8", color="#999"];
+        m_sep [label="Sep", fillcolor="#e8e8e8", color="#999"];
+        m_oct [label="Oct", fillcolor="#e8e8e8", color="#999"];
+        m_nov [label="Nov", fillcolor="#e8e8e8", color="#999"];
+        m_dec [label="Dec", fillcolor="#e8e8e8", color="#999"];
+        m_jan [label="Jan\n2024", fillcolor="#e8e8e8", color="#999"];
+        m_feb [label="Feb", fillcolor="#e8e8e8", color="#999"];
+        m_mar [label="Mar", fillcolor="#e8e8e8", color="#999"];
+        m_apr [label="Apr", fillcolor="#e8e8e8", color="#999"];
+        m_may [label="May", fillcolor="#e8e8e8", color="#999"];
+        m_jun [label="Jun", fillcolor="#e8e8e8", color="#999"];
+
+        m_jul -> m_aug -> m_sep -> m_oct -> m_nov -> m_dec -> m_jan -> m_feb -> m_mar -> m_apr -> m_may -> m_jun;
+    }
+
+    // Apple (Sep FYE)
+    subgraph cluster_apple {
+        label="Apple (Sep FYE)";
+        labeljust=l;
+        fontsize=11;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#2980b9";
+        bgcolor="#f0f7fc";
+        margin=8;
+
+        a_q4a [label="Q4", fillcolor="#aec6e8", color="#2980b9"];
+        a_q4b [label="", fillcolor="#aec6e8", color="#2980b9"];
+        a_q4c [label="", fillcolor="#aec6e8", color="#2980b9"];
+        a_q1a [label="Q1", fillcolor="#4a90d9", fontcolor=white, color="#2980b9"];
+        a_q1b [label="", fillcolor="#4a90d9", color="#2980b9"];
+        a_q1c [label="", fillcolor="#4a90d9", color="#2980b9"];
+        a_q2a [label="Q2", fillcolor="#aec6e8", color="#2980b9"];
+        a_q2b [label="", fillcolor="#aec6e8", color="#2980b9"];
+        a_q2c [label="", fillcolor="#aec6e8", color="#2980b9"];
+        a_q3a [label="Q3", fillcolor="#aec6e8", color="#2980b9"];
+        a_q3b [label="", fillcolor="#aec6e8", color="#2980b9"];
+        a_q3c [label="", fillcolor="#aec6e8", color="#2980b9"];
+
+        a_q4a -> a_q4b -> a_q4c -> a_q1a -> a_q1b -> a_q1c -> a_q2a -> a_q2b -> a_q2c -> a_q3a -> a_q3b -> a_q3c;
+    }
+
+    // Microsoft (Jun FYE)
+    subgraph cluster_msft {
+        label="Microsoft (Jun FYE)";
+        labeljust=l;
+        fontsize=11;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#27ae60";
+        bgcolor="#f0faf0";
+        margin=8;
+
+        ms_q1a [label="Q1", fillcolor="#a2d9a2", color="#27ae60"];
+        ms_q1b [label="", fillcolor="#a2d9a2", color="#27ae60"];
+        ms_q1c [label="", fillcolor="#a2d9a2", color="#27ae60"];
+        ms_q2a [label="Q2", fillcolor="#50c878", fontcolor=white, color="#27ae60"];
+        ms_q2b [label="", fillcolor="#50c878", color="#27ae60"];
+        ms_q2c [label="", fillcolor="#50c878", color="#27ae60"];
+        ms_q3a [label="Q3", fillcolor="#a2d9a2", color="#27ae60"];
+        ms_q3b [label="", fillcolor="#a2d9a2", color="#27ae60"];
+        ms_q3c [label="", fillcolor="#a2d9a2", color="#27ae60"];
+        ms_q4a [label="Q4", fillcolor="#a2d9a2", color="#27ae60"];
+        ms_q4b [label="", fillcolor="#a2d9a2", color="#27ae60"];
+        ms_q4c [label="", fillcolor="#a2d9a2", color="#27ae60"];
+
+        ms_q1a -> ms_q1b -> ms_q1c -> ms_q2a -> ms_q2b -> ms_q2c -> ms_q3a -> ms_q3b -> ms_q3c -> ms_q4a -> ms_q4b -> ms_q4c;
+    }
+
+    // JPMorgan (Dec FYE)
+    subgraph cluster_jpm {
+        label="JPMorgan (Dec FYE)";
+        labeljust=l;
+        fontsize=11;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#8e44ad";
+        bgcolor="#f8f0fa";
+        margin=8;
+
+        jp_q3a [label="Q3", fillcolor="#d5b8e8", color="#8e44ad"];
+        jp_q3b [label="", fillcolor="#d5b8e8", color="#8e44ad"];
+        jp_q3c [label="", fillcolor="#d5b8e8", color="#8e44ad"];
+        jp_q4a [label="Q4", fillcolor="#d5b8e8", color="#8e44ad"];
+        jp_q4b [label="", fillcolor="#d5b8e8", color="#8e44ad"];
+        jp_q4c [label="", fillcolor="#d5b8e8", color="#8e44ad"];
+        jp_q1a [label="Q1", fillcolor="#8e44ad", fontcolor=white, color="#8e44ad"];
+        jp_q1b [label="", fillcolor="#8e44ad", color="#8e44ad"];
+        jp_q1c [label="", fillcolor="#8e44ad", color="#8e44ad"];
+        jp_q2a [label="Q2", fillcolor="#d5b8e8", color="#8e44ad"];
+        jp_q2b [label="", fillcolor="#d5b8e8", color="#8e44ad"];
+        jp_q2c [label="", fillcolor="#d5b8e8", color="#8e44ad"];
+
+        jp_q3a -> jp_q3b -> jp_q3c -> jp_q4a -> jp_q4b -> jp_q4c -> jp_q1a -> jp_q1b -> jp_q1c -> jp_q2a -> jp_q2b -> jp_q2c;
+    }
+
+    // Note about the overlap
+    note [label="Apple Q1 (Oct–Dec) overlaps with\nMicrosoft Q2 and precedes JPMorgan Q1.\n\"Q1 2024\" means different months\nfor each company.", shape=note, fillcolor="#fffde7", color="#f5a623", fontsize=9, fontname="Helvetica-Oblique"];
+}

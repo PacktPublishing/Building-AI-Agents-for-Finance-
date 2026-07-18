@@ -1,0 +1,50 @@
+// Figure 1.1 — Basic RAG vs Deep Search Agent
+digraph rag_vs_deep_search {
+    rankdir=LR;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=11, style=filled, shape=box, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=9];
+    compound=true;
+    newrank=true;
+
+    // --- Basic RAG subgraph ---
+    subgraph cluster_rag {
+        label="Basic RAG";
+        labeljust=l;
+        fontsize=13;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#999999";
+        bgcolor="#fafafa";
+        margin=16;
+
+        rag_q  [label="User Query",          fillcolor="#e8d5f5", color="#8e44ad"];
+        rag_r  [label="Embed &\nRetrieve",   fillcolor="#d5e8f5", color="#2980b9"];
+        rag_a  [label="Generate\nAnswer",     fillcolor="#d5f5e3", color="#27ae60"];
+
+        rag_q -> rag_r -> rag_a;
+    }
+
+    // --- Deep Search subgraph ---
+    subgraph cluster_deep {
+        label="Deep Search Agent";
+        labeljust=l;
+        fontsize=13;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#2c3e50";
+        bgcolor="#f0f4f8";
+        margin=16;
+
+        ds_q  [label="Research\nQuestion",               fillcolor="#aec6e8", color="#2c3e50"];
+        ds_p  [label="Plan\nSub-Tasks",                  fillcolor="#f5c842", color="#b7950b"];
+        ds_e  [label="Execute:\nSearch, APIs,\nFilings",  fillcolor="#bb8fce", color="#6c3483"];
+        ds_v  [label="Validate &\nCross-Reference",      fillcolor="#82e0aa", color="#1e8449"];
+        ds_d  [label="Gaps\nFound?", shape=diamond,       fillcolor="#f1948a", color="#c0392b", fontsize=10];
+        ds_s  [label="Synthesize\nReport",                fillcolor="#76d7c4", color="#117a65"];
+
+        ds_q -> ds_p -> ds_e -> ds_v -> ds_d;
+        ds_d -> ds_p [label="Yes", style=dashed, color="#c0392b", fontcolor="#c0392b"];
+        ds_d -> ds_s [label="No"];
+    }
+}

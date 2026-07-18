@@ -1,0 +1,24 @@
+// Figure 2.3 — Single Agent ReAct Loop
+digraph react_loop {
+    rankdir=LR;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=11, style=filled, shape=box, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=9];
+    nodesep=0.4;
+
+    q [label="Research\nQuestion", fillcolor="#4a90d9", fontcolor=white, color="#34699c", style="filled,rounded"];
+
+    r1 [label="Reason", fillcolor="#fef3c7", color="#b7950b"];
+    a1 [label="Act\n(call tool)", fillcolor="#e8d5f5", color="#8e44ad"];
+    o1 [label="Observe\nresult", fillcolor="#d5f5e3", color="#27ae60"];
+
+    r2 [label="Reason", fillcolor="#fef3c7", color="#b7950b"];
+    a2 [label="Act\n(call tool)", fillcolor="#e8d5f5", color="#8e44ad"];
+    o2 [label="Observe\nresult", fillcolor="#d5f5e3", color="#27ae60"];
+
+    r3 [label="Reason", fillcolor="#fef3c7", color="#b7950b"];
+
+    f [label="Final\nAnswer", fillcolor="#4ecdc4", color="#3aaba3", style="filled,rounded"];
+
+    q -> r1 -> a1 -> o1 -> r2 -> a2 -> o2 -> r3 -> f;
+}

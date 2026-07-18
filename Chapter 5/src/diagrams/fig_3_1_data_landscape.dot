@@ -1,0 +1,74 @@
+// Figure 3.1 — The Financial Data Landscape
+digraph data_landscape {
+    rankdir=TB;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=10, style="filled,rounded", shape=box, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=8];
+    compound=true;
+    nodesep=0.4;
+    ranksep=0.5;
+
+    subgraph cluster_structured {
+        label="Structured Data";
+        labeljust=l;
+        fontsize=12;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#3aaba3";
+        bgcolor="#e8faf8";
+        margin=12;
+
+        sd1 [label="Market Data\nPrices, volume, options",          fillcolor="#4ecdc4", color="#3aaba3"];
+        sd2 [label="Financial Metrics\nP/E, EPS, revenue, margins", fillcolor="#4ecdc4", color="#3aaba3"];
+        sd3 [label="Fundamentals\nBalance sheet, income\nstatement, cash flow", fillcolor="#4ecdc4", color="#3aaba3"];
+    }
+
+    subgraph cluster_semi {
+        label="Semi-Structured Data";
+        labeljust=l;
+        fontsize=12;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#c4841c";
+        bgcolor="#fef8f0";
+        margin=12;
+
+        ss1 [label="SEC Filings\n10-K, 10-Q, 8-K,\nproxy statements",    fillcolor="#f5a623", color="#c4841c"];
+        ss2 [label="Earnings Transcripts\nSpeaker-labeled Q&A",            fillcolor="#f5a623", color="#c4841c"];
+        ss3 [label="Financial News\nHeadlines, articles,\nsentiment",      fillcolor="#f5a623", color="#c4841c"];
+    }
+
+    subgraph cluster_unstructured {
+        label="Unstructured Data";
+        labeljust=l;
+        fontsize=12;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#cc5555";
+        bgcolor="#fdf0f0";
+        margin=12;
+
+        us1 [label="Analyst Reports\nResearch notes,\nrecommendations",  fillcolor="#ff6b6b", fontcolor=white, color="#cc5555"];
+        us2 [label="Web Content\nBlog posts, forums,\nsocial media",     fillcolor="#ff6b6b", fontcolor=white, color="#cc5555"];
+        us3 [label="ESG Reports\nSustainability,\ngovernance scores",    fillcolor="#ff6b6b", fontcolor=white, color="#cc5555"];
+    }
+
+    subgraph cluster_macro {
+        label="Macroeconomic";
+        labeljust=l;
+        fontsize=12;
+        fontname="Helvetica-Bold";
+        style=rounded;
+        color="#5a4bc7";
+        bgcolor="#f0eef8";
+        margin=12;
+
+        me1 [label="Central Bank Data\nInterest rates,\nmonetary policy",   fillcolor="#7b68ee", fontcolor=white, color="#5a4bc7"];
+        me2 [label="Economic Indicators\nGDP, inflation,\nemployment",      fillcolor="#7b68ee", fontcolor=white, color="#5a4bc7"];
+    }
+
+    // Invisible edges to enforce top-to-bottom cluster ordering
+    sd1 -> ss1 [style=invis, ltail=cluster_structured, lhead=cluster_semi];
+    ss1 -> us1 [style=invis, ltail=cluster_semi, lhead=cluster_unstructured];
+    us1 -> me1 [style=invis, ltail=cluster_unstructured, lhead=cluster_macro];
+}

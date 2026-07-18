@@ -1,0 +1,46 @@
+// Figure 2.5 — Deep Orchestrator with MCP Servers
+digraph deep_orchestrator {
+    rankdir=LR;
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=11, style="filled,rounded", shape=box, penwidth=1.2];
+    edge [fontname="Helvetica", fontsize=9];
+    nodesep=0.4;
+    ranksep=0.4;
+
+    q [label="Research\nQuestion", fillcolor="#4a90d9", fontcolor=white, color="#34699c"];
+
+    plan [label="Plan upfront\nTask dependency\ngraph", fillcolor="#f5a623", color="#c4841c"];
+
+    orch [label="Deep Orchestrator\nSchedules ready\ntasks", fillcolor="#7b68ee", fontcolor=white, color="#5a4bc7"];
+
+    subgraph cluster_mcp {
+        label="MCP servers";
+        fontname="Helvetica";
+        fontsize=10;
+        style="rounded,dashed";
+        color="#7f8c8d";
+        mcp_fin [label="Financial\ndata", fillcolor="#dbeafe", color="#34699c"];
+        mcp_sec [label="SEC\nEDGAR",     fillcolor="#dbeafe", color="#34699c"];
+        mcp_web [label="Web\nsearch",    fillcolor="#dbeafe", color="#34699c"];
+    }
+
+    verify [label="Deterministic\nverification\n(code checks)", fillcolor="#50c878", color="#3a9a5c"];
+    decision [label="Pass?", shape=diamond, fillcolor="#f1948a", color="#c0392b", style=filled, width=1.0];
+
+    synth [label="Synthesize\nreport", fillcolor="#4ecdc4", color="#3aaba3"];
+    report [label="Investment\nMemo", fillcolor="#4a90d9", fontcolor=white, color="#34699c"];
+
+    q    -> plan;
+    plan -> orch;
+    orch -> mcp_fin;
+    orch -> mcp_sec;
+    orch -> mcp_web;
+    mcp_fin -> verify;
+    mcp_sec -> verify;
+    mcp_web -> verify;
+    verify -> decision;
+    decision -> orch [label="Yes — next task", color="#27ae60", fontcolor="#27ae60", constraint=false];
+    decision -> plan [label="Fail — replan", style=dashed, color="#c0392b", fontcolor="#c0392b", constraint=false];
+    decision -> synth [label="all tasks done"];
+    synth -> report;
+}

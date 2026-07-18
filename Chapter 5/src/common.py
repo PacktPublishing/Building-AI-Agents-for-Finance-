@@ -27,7 +27,7 @@ TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 SEC_EDGAR_EMAIL = os.getenv("SEC_EDGAR_EMAIL", "researcher@example.com")
 
 # Model configuration — PydanticAI model strings.
-# Format: "provider:model-name" (e.g., "openai:gpt-4o", "anthropic:claude-sonnet-4-20250514")
+# Format: "provider:model-name" (e.g., "openai:gpt-4o", "anthropic:claude-sonnet-5")
 PLANNING_MODEL = "openai:gpt-4o"
 ROUTING_MODEL = "openai:gpt-4o-mini"
 SYNTHESIS_MODEL = "openai:gpt-4o"

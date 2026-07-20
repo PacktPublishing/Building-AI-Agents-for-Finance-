@@ -27,7 +27,7 @@ fraud_advocate = FunctionAgent(
     ),
     llm=llm,
     tools=[],
-    can_handoff_to=["InvestigationDecision"],
+    can_handoff_to=["LegitimacyAdvocate"],
 )
 
 legitimacy_advocate = FunctionAgent(

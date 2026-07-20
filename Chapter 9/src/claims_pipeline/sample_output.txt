@@ -1,0 +1,22 @@
+# Captured live run — src/claims_pipeline/run.py (gpt-4o, 2026-07-06)
+# Full streaming output abridged; audit trail verbatim.
+==================================================
+  Agent: DecisionAgent
+==================================================
+
+==================================================
+  Agent: ComplianceAgent
+==================================================
+The decision has been validated and is compliant with regulatory requirements. The denial reason is valid, the reasoning is complete, and the pipeline stage is complete.
+
+============================================================
+  AUDIT TRAIL
+============================================================
+  [2026-07-06T19:22:28.224149] FNOLAgent: Claim created
+  [2026-07-06T19:22:29.649894] DocumentParser: Parsed 4 documents
+  [2026-07-06T19:22:32.249640] CoverageAgent: Coverage: verified
+  [2026-07-06T19:22:34.600325] FraudScreener: Score: 0/100. Recommendation: proceed
+  [2026-07-06T19:22:37.388265] AssessmentAgent: Estimated payout: $3,800
+  [2026-07-06T19:22:39.945787] DecisionAgent: Decision: APPROVED
+  [2026-07-06T19:22:42.697465] ComplianceAgent: APPROVED — decision is compliant
+The decision has been validated and is compliant with regulatory requirements. The denial reason is valid, the reasoning is complete, and the pipeline stage is complete.

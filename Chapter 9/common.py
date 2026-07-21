@@ -131,8 +131,18 @@ def log_audit(state: dict, agent_name: str, action: str, detail: str = "") -> No
 
 
 def days_between(d1: str, d2: str) -> int:
+    """Signed days from d1 to d2 (positive when d2 is later).
+
+    Accepts ISO dates or datetimes; only the date part is compared.
+    """
     fmt = "%Y-%m-%d"
-    return abs((datetime.strptime(d2, fmt) - datetime.strptime(d1, fmt)).days)
+    try:
+        return (datetime.strptime(d2[:10], fmt)
+                - datetime.strptime(d1[:10], fmt)).days
+    except ValueError as exc:
+        raise ValueError(
+            f"Expected ISO dates (YYYY-MM-DD), got {d1!r}, {d2!r}"
+        ) from exc
 
 
 # ---------------------------------------------------------------------------
@@ -144,9 +154,10 @@ SAMPLE_CLAIM = {
     "policy_number": "POL-2024-AUTO-78432",
     "date_of_loss": "2026-04-08",
     "description": (
-        "Rear-ended a stopped delivery truck on I-95 in heavy rain at "
-        "approximately 2:47 AM. Bumper cracked, tail light broken. Airbags "
-        "did not deploy. Experiencing back pain."
+        "Rear-ended a stopped delivery truck on I-95 in "
+        "heavy rain at approximately 2:47 AM. Front bumper "
+        "cracked, headlight broken. Airbags did not deploy. "
+        "Experiencing back pain."
     ),
 }
 
@@ -156,9 +167,9 @@ SAMPLE_POLICY = {
     "inception_date": "2025-01-15",
     "expiration_date": "2026-07-15",
     "claim_type": "auto",
-    "coverage_limit": 50_000,
+    "coverage_limit": 50000,
     "deductible": 500,
-    "coverage_sections": "comprehensive auto coverage",
+    "coverage_sections": "collision coverage",
     "exclusions": ["racing", "intentional damage"],
 }
 
@@ -175,23 +186,26 @@ SAMPLE_DOCUMENTS = [
     {
         "type": "photo",
         "description": (
-            "Rear bumper cracked with visible impact marks. Right tail light "
-            "assembly broken. Paint transfer from delivery truck visible."
+            "Front bumper cracked with visible impact marks. "
+            "Right headlight assembly broken. Paint transfer "
+            "from the delivery truck's rear step visible."
         ),
     },
     {
         "type": "photo",
         "description": (
-            "Close-up of bumper damage showing crack extending approximately "
-            "18 inches. Bumper partially detached on right side."
+            "Close-up of bumper damage showing crack extending "
+            "approximately 18 inches. Bumper partially detached "
+            "on right side."
         ),
     },
     {
         "type": "police_report",
         "summary": (
-            "Report #2026-04-08-5521. Single-vehicle rear-end collision. "
-            "Driver (Chen) struck stopped delivery vehicle. Weather: rain. "
-            "Road conditions: wet. No citations issued. No injuries at scene."
+            "Report #2026-04-08-5521. Two-vehicle rear-end "
+            "collision. Driver (Chen) struck stopped delivery "
+            "vehicle. Weather: rain. Road conditions: wet. "
+            "No citations issued. No injuries reported at scene."
         ),
     },
 ]

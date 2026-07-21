@@ -1,0 +1,57 @@
+{
+  "policy_number": "POL-2024-AUTO-78432",
+  "policyholder": {
+    "name": "Sarah Chen",
+    "date_of_birth": "1988-03-15",
+    "address": "128 Maple Drive, Greenwich, CT 06830",
+    "driver_license": "CT-DL-8834521"
+  },
+  "vehicle": {
+    "year": 2023,
+    "make": "Toyota",
+    "model": "Camry",
+    "vin": "4T1BF1FK5MU123456",
+    "market_value": 28500
+  },
+  "coverage": {
+    "inception_date": "2025-01-15",
+    "expiration_date": "2026-07-15",
+    "type": "comprehensive_auto",
+    "sections": {
+      "collision": {
+        "limit": 50000,
+        "deductible": 500,
+        "description": "Covers damage to the insured vehicle resulting from collision with another vehicle or object."
+      },
+      "comprehensive": {
+        "limit": 50000,
+        "deductible": 250,
+        "description": "Covers damage from non-collision events: theft, vandalism, weather, fire, animal strikes."
+      },
+      "liability_bodily_injury": {
+        "limit_per_person": 100000,
+        "limit_per_accident": 300000,
+        "description": "Covers bodily injury to others when the insured is at fault."
+      },
+      "liability_property": {
+        "limit": 50000,
+        "description": "Covers property damage to others when the insured is at fault."
+      },
+      "medical_payments": {
+        "limit": 5000,
+        "description": "Covers medical expenses for the insured and passengers regardless of fault."
+      },
+      "uninsured_motorist": {
+        "limit": 100000,
+        "description": "Covers injuries caused by an uninsured or underinsured driver."
+      }
+    },
+    "exclusions": [
+      "Racing or speed contests",
+      "Intentional damage",
+      "Commercial use of personal vehicle",
+      "Damage while operating under the influence of alcohol or drugs"
+    ]
+  },
+  "claims_history": []
+}

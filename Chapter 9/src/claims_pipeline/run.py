@@ -104,6 +104,7 @@ async def run_claims_pipeline():
 
     handler = workflow.run(
         user_msg=json.dumps(SAMPLE_CLAIM),
+        max_iterations=60,
     )
 
     # Stream agent transitions (banner only when the agent changes)

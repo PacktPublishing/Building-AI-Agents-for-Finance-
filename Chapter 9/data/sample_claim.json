@@ -1,0 +1,38 @@
+{
+  "claim": {
+    "name": "Sarah Chen",
+    "policy_number": "POL-2024-AUTO-78432",
+    "date_of_loss": "2026-04-08",
+    "description": "Rear-ended a stopped delivery truck on I-95 in heavy rain at approximately 2:47 AM. Bumper cracked, headlight broken. Airbags did not deploy. Experiencing back pain."
+  },
+  "submitted_documents": [
+    {
+      "type": "claim_form",
+      "fields": {
+        "claimant": "Sarah Chen",
+        "date": "2026-04-08",
+        "time": "02:47",
+        "location": "I-95 Northbound, mile marker 42, Fairfield County, CT",
+        "description": "Rear-end collision with stopped FedEx delivery truck",
+        "injuries": "Back pain reported, no visible injuries at scene",
+        "vehicle": "2023 Toyota Camry, VIN: 4T1BF1FK5MU123456",
+        "other_vehicle": "2024 FedEx Freightliner, Fleet #FX-8821"
+      }
+    },
+    {
+      "type": "photo",
+      "filename": "damage_rear_bumper.jpg",
+      "description": "Front bumper cracked with visible impact marks. Right headlight assembly broken. Paint transfer from delivery truck visible on bumper surface."
+    },
+    {
+      "type": "photo",
+      "filename": "damage_closeup.jpg",
+      "description": "Close-up of bumper damage showing crack extending approximately 18 inches. Bumper partially detached on right side. No structural deformation visible."
+    },
+    {
+      "type": "police_report",
+      "report_number": "2026-04-08-5521",
+      "summary": "Two-vehicle rear-end collision on I-95 NB at mile marker 42. Driver Sarah Chen (DOB 1988-03-15) operating 2023 Toyota Camry struck stopped FedEx delivery vehicle. Weather: rain. Road conditions: wet. Visibility: reduced. Speed estimated at 25-30 mph at impact. No citations issued. No injuries reported at scene. Both vehicles drivable."
+    }
+  ]
+}

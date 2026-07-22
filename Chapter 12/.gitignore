@@ -1,0 +1,21 @@
+# --- Secrets ---------------------------------------------------------------
+# Never commit the real key file. .env.example (the template) IS committed.
+.env
+.env.*
+!.env.example
+
+# --- Virtual environment ---------------------------------------------------
+.venv/
+venv/
+env/
+
+# --- Python bytecode / caches ----------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# --- Generated lab outputs -------------------------------------------------
+# JSONL traces are regenerated on every run, so they are not tracked.
+results/traces/*.jsonl
+# results/lab_runs/*.md is left TRACKED on purpose: the repo ships the sample
+# step reports so a reader can compare output without spending API calls.

@@ -1,0 +1,15 @@
+# Requirements for the chapter's labs.
+#
+# Covers the live-API pieces: the fundamental-analysis workflow (fa_workflow.py), the
+# hand-rolled harness/loop toy (mini_analyst.py), Lab 1 observability, and Lab 2 guardrails.
+#
+# The offline snippet files (snippets_harness.py, snippets_loop.py, snippets_cost.py,
+# snippets_deploy.py) are stdlib-only and need nothing beyond a standard Python install.
+openai-agents>=0.17
+openai>=1.50
+yfinance>=0.2.40
+python-dotenv>=1.0
+
+# The MLflow lab (lab3_mlflow.py) needs the full mlflow package as well; it is optional and
+# not part of the chapter. Install it separately:
+#   pip install -r requirements-mlflow.txt

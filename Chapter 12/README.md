@@ -27,12 +27,11 @@ more than one section.
 | `guardrails.py` | *Guardrailing agent inputs and outputs* | The guardrail pipeline on the SDK's native hooks: `@input_guardrail` (ticker validation), `@tool_output_guardrail` (indirect-injection screen on retrieved news), `@output_guardrail` (output policy), plus deterministic PII-redaction and disclaimer transforms. |
 | `lab2_guardrails.py` | *Guardrailing agent inputs and outputs* | **Lab 2.** Assembles and red-teams the guardrail pipeline (steps 1–6). Writes `oai_step_#_guard_*.md` reports. |
 | `redteam_cases.py` | *Guardrailing agent inputs and outputs* | The adversarial suite consumed by Lab 2, Step 6. |
-| `snippets_governance.py` | *Governing agents: risk, compliance, and the human in the loop* | Offline illustrations of the governance mechanics: an autonomy-tier approval gate that disposes of proposed actions (execute / hold for sign-off / escalate), and an audit-record assembler that binds one decision to the trace, version, and guardrail artefacts earlier sections already produce. |
 | `results/traces/` | *Observing agents in production* | JSONL span files (Lab 1), one per run. |
 | `results/lab_runs/` | Observability & Guardrailing | Per-step markdown reports (`oai_step_#_obs_*.md`, `oai_step_#_guard_*.md`). |
 
 The `snippets_*.py` files are **offline, deterministic, and free**: no API key and no network,
-each finishes in seconds. The labs (`lab1_*`, `lab2_*`, `lab3_*`, `fa_workflow.py`,
+each finishes in seconds. The labs (`lab1_*`, `lab2_*`, `fa_workflow.py`,
 `mini_analyst.py`) make live OpenAI API calls.
 
 ## Setup
@@ -58,7 +57,6 @@ python snippets_harness.py           # retry/backoff, idempotency, circuit break
 python snippets_loop.py              # checkpointed batch: crash on name 3, resume without re-running 1-2
 python snippets_cost.py              # cost estimator, tool-result cache, model cascade, bounded fan-out
 python snippets_deploy.py            # version manifest/fingerprint, shadow comparison
-python snippets_governance.py        # autonomy-tier approval gate, audit-record assembler
 ```
 
 ### The workflow and the harness (live API)

@@ -9,7 +9,3 @@ openai-agents>=0.17
 openai>=1.50
 yfinance>=0.2.40
 python-dotenv>=1.0
-
-# The MLflow lab (lab3_mlflow.py) needs the full mlflow package as well; it is optional and
-# not part of the chapter. Install it separately:
-#   pip install -r requirements-mlflow.txt

@@ -1,0 +1,13 @@
+# Chapter 7 companion code — pinned per implementation
+# LlamaIndex pipeline (Implementation 1 and the lab):
+llama-index>=0.12
+financetoolkit>=1.9
+pandas>=2.0
+python-dotenv>=1.0
+# OpenAI Agents SDK version (Implementation 2):
+openai-agents>=0.0.7
+requests>=2.31
+# AutoGen version (Implementation 3) — classic 0.2-lineage API:
+pyautogen<0.4
+yfinance>=0.2
+matplotlib>=3.8

@@ -64,15 +64,18 @@ LIQUIDITY_THRESHOLDS = {
 def format_threshold_prompt(thresholds: dict, category: str) -> str:
     """Render a threshold dict into a prompt snippet for an LLM agent."""
     lines = [f"## {category} Thresholds\n"]
+    as_pct = category.lower().startswith("profit")
     for metric, config in thresholds.items():
         lines.append(f"### {metric}")
         lines.append(f"Description: {config['description']}")
         for key, value in config.items():
             if key == "description":
                 continue
-            if isinstance(value, float):
+            if isinstance(value, float) and as_pct:
                 lines.append(f"  {key}: {value:.0%}")
             else:
+                # Liquidity metrics are plain ratios (1.5, 3.0), not
+                # percentages -- do not render 1.5 as 150%.
                 lines.append(f"  {key}: {value}")
         lines.append("")
     return "\n".join(lines)

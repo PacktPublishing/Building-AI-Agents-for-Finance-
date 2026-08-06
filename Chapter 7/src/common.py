@@ -4,8 +4,9 @@ common.py
 Shared configuration, financial health thresholds, and utility functions
 for the Chapter 7 Multi-Agent Financial Health Analyzer.
 
-The three framework implementations (LlamaIndex, OpenAI Agents SDK,
-AutoGen) share these definitions to ensure consistent behavior.
+The LlamaIndex and OpenAI Agents SDK implementations share these
+definitions to ensure consistent behavior; the AutoGen version
+coordinates through generated code and does not use this module.
 """
 
 import os

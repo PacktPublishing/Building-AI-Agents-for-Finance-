@@ -1,10 +1,6 @@
-"""
-LlamaIndex AgentWorkflow implementation of the Multi-Agent Financial
-Health Analyzer.
-
-Architecture: Sequential pipeline with explicit handoffs and shared state.
-Pattern: Section 2.1 (Sequential) from Chapter 7.
-
-Agents:
-  FundamentalAgent → ProfitabilityAgent → LiquidityAgent → SupervisorAgent
+"""LlamaIndex AgentWorkflow implementation — sequential pipeline with
+explicit handoffs and shared state (see the chapter's "Sequential
+(pipeline)" and "Implementation 1: LlamaIndex AgentWorkflow" sections).
+Agents: FundamentalAgent -> ProfitabilityAgent -> LiquidityAgent ->
+SupervisorAgent.
 """

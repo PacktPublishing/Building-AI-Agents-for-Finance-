@@ -47,6 +47,14 @@ its first cell, so installing just `jupyter` and running the notebook works too.
 
 ## Project source (`src/`)
 
+Install its pinned dependencies first and run the modules from this
+folder:
+
+```bash
+cd "Chapter 7"
+pip install -r src/requirements.txt
+```
+
 `src/` is the chapter's project code as printed in the implementation
 sections — unlike the notebooks, it calls the real Financial Modeling Prep
 API, so it needs both `OPENAI_API_KEY` and `FINANCIAL_MODELING_PREP_API_KEY`
@@ -83,5 +91,5 @@ Lab 3 and `src/autogen/` use the classic AutoGen 0.2-style API
 (`pip install "pyautogen<0.4"`), the most widely deployed and documented
 lineage. AutoGen 0.4 was a ground-up rewrite, and Microsoft has since folded
 the project's direction into the Microsoft Agent Framework; the community
-fork AG2 continues the 0.2 lineage. Chapter 3 covers this landscape and the
-migration paths.
+fork AG2 continues the 0.2 lineage. Chapter 3's AutoGen coverage picks up the
+framework-succession story.

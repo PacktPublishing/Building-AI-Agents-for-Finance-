@@ -1,11 +1,6 @@
-"""
-OpenAI Agents SDK implementation of the Multi-Agent Financial Analyst.
-
-Architecture: Leader-Follower (Orchestrator-Worker) with dynamic routing.
-Pattern: Section 2.2 (Orchestrator-Worker) from Chapter 7.
-
-Agents:
-  Manager Agent → Stock Price Agent
-                → Company Basic Information Agent
-                → Income Statement Agent
+"""OpenAI Agents SDK implementation — orchestrator-worker with synthesis
+via agents-as-tools (see the chapter's "Leader-follower
+(orchestrator-worker)" and "Implementation 2: OpenAI Agents SDK"
+sections). Agents: Health Assessment Manager -> Profitability Analyst,
+Liquidity Analyst.
 """

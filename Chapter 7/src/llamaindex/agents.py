@@ -61,8 +61,8 @@ profitability_agent = FunctionAgent(
     name="ProfitabilityAgent",
     description=(
         "Collect profitability ratios for a given ticker: ROA, ROE, "
-        "Net Profit Margin, and Gross Margin and comment on these "
-        "ratios given a set of threshold values."
+        "Net Profit Margin, and Gross Margin, and score these ratios "
+        "from 1 to 10 against a set of threshold values."
     ),
     system_prompt=(
         "You are the ProfitabilityAgent that can collect profitability "
@@ -88,8 +88,8 @@ liquidity_agent = FunctionAgent(
     name="LiquidityAgent",
     description=(
         "Collect liquidity ratios for a given ticker: Current Ratio, "
-        "Quick Ratio, Debt-to-Equity Ratio, Interest Coverage Ratio "
-        "and comment on these ratios given a set of threshold values."
+        "Quick Ratio, Debt-to-Equity Ratio, Interest Coverage Ratio, "
+        "and score these ratios from 1 to 10 against a set of threshold values."
     ),
     system_prompt=(
         "You are the LiquidityAgent that can collect liquidity ratios.\n"

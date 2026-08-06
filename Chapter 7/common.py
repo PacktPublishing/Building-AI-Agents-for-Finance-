@@ -1,9 +1,10 @@
 """
 common.py — Shared configuration and helpers for Chapter 7 multi-agent labs.
 
-All three framework implementations (LlamaIndex, OpenAI Agents SDK, AutoGen)
-share these definitions to keep the *task* identical across labs and let you
-focus on the *architecture* each framework expresses.
+The LlamaIndex and OpenAI Agents SDK labs share these definitions to keep
+the *task* identical and let you focus on the *architecture* each framework
+expresses. The AutoGen lab coordinates through generated code and live
+yfinance data and does not use this module.
 """
 from __future__ import annotations
 

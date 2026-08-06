@@ -18,6 +18,11 @@ import os
 import sys
 import tempfile
 
+from dotenv import load_dotenv
+
+# Honor a .env file, matching the LlamaIndex and OpenAI SDK versions.
+load_dotenv()
+
 from autogen import AssistantAgent, UserProxyAgent
 from autogen.coding import LocalCommandLineCodeExecutor
 

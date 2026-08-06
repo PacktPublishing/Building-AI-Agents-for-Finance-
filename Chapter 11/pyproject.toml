@@ -1,0 +1,30 @@
+[project]
+name = "kyc-eval-harness"
+version = "0.1.0"
+description = "Chapter 11 — Evaluation harness for the Chapter 9 KYC agent"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.6",
+    "numpy>=1.26",
+    "scipy>=1.12",
+    "pyyaml>=6.0",
+    "anthropic>=0.40",
+    "openai>=1.40",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+# Production observability/eval layer discussed in the chapter's Section 4;
+# not required to run the self-contained lab harness.
+production = ["langfuse>=2.40", "deepeval>=1.0"]
+
+[project.scripts]
+kyc-eval = "src.eval_harness.run:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]

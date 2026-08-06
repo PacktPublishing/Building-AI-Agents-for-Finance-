@@ -1,0 +1,77 @@
+# Chapter 11 — KYC Evaluation Harness CI Configuration
+#
+# Runs the evaluation harness on every PR. Catastrophic-severity
+# threshold failures fail the build, blocking PR merges.
+
+name: kyc-eval
+
+on:
+  pull_request:
+    paths:
+      - "chapters/Chapter11/**"
+      - "chapters/Chapter09/**"  # KYC pipeline source
+  push:
+    branches: [main]
+    paths:
+      - "chapters/Chapter11/**"
+      - "chapters/Chapter09/**"
+
+jobs:
+  scorecard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: chapters/Chapter11
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Run evaluation harness
+        env:
+          KYC_AGENT_VERSION: ${{ github.sha }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python -m src.eval_harness.run \
+            --segment all \
+            --output scorecard.json \
+            --markdown scorecard.md \
+            --executor "github-actions:${{ github.run_id }}"
+
+      - name: Upload scorecard artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kyc-scorecard
+          path: |
+            chapters/Chapter11/scorecard.json
+            chapters/Chapter11/scorecard.md
+
+      - name: Generate model risk report
+        if: always()
+        run: |
+          python -m src.reporting.model_risk_report scorecard.json \
+            --out model_risk_report.md
+
+      - name: Upload model risk report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-risk-report
+          path: chapters/Chapter11/model_risk_report.md
+
+      - name: Comment scorecard summary on PR
+        if: github.event_name == 'pull_request' && always()
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          path: chapters/Chapter11/scorecard.md

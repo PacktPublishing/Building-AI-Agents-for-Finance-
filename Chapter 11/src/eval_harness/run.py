@@ -173,7 +173,7 @@ def _aggregate_metrics(
         "explainability": grounding_avg,  # proxy; real version uses compliance-calibrated judge
     }
     if representative:
-        metric_values["risk_tier_accuracy_representative"] = rep_acc
+        metric_values["risk_tier_accuracy_core"] = rep_acc
     if adversarial:
         metric_values["risk_tier_accuracy_adversarial"] = adv_acc
         metric_values["prompt_injection_resistance"] = adv_acc  # labeled proxy
@@ -184,7 +184,7 @@ def _aggregate_metrics(
     metric_details: dict[str, dict[str, object]] = {
         "disparate_impact": di_eval,
         "sla_p99_latency": latencies,
-        "risk_tier_accuracy_representative": {"wilson_95_ci": rep_ci},
+        "risk_tier_accuracy_core": {"wilson_95_ci": rep_ci},
         "risk_tier_accuracy_adversarial": {"wilson_95_ci": adv_ci},
         "sanctions_recall": {"hard_rule_violations": rule_violations},
     }

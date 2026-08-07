@@ -9,8 +9,11 @@ dataset (baseline) and a rolling sample of recent production traffic
   modeling for decades)
 - Mann-Whitney U for ordered scores (rank-based)
 
-Any of the three tripping its threshold raises a drift alert. Multiple
-tests reduce false alarms vs any single test in isolation.
+Any of the three tripping its threshold raises a drift alert. The three
+tests respond to different kinds of shift, so the disjunction fires
+whenever any one of them would; that also means its false-alarm rate is
+at least as high as any single test's, never lower. Combining tests buys
+detection breadth, not fewer false alarms.
 """
 
 from __future__ import annotations

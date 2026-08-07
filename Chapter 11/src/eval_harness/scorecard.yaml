@@ -11,14 +11,14 @@ methodology_version: v1.0.0
 schema_version: 1
 
 metrics:
-  - name: risk_tier_accuracy_representative
+  - name: risk_tier_accuracy_core
     dimension: task_success
     methodology: reference_based
     weight: 0.15
     threshold: 0.95
     severity: severe
     segment: core
-    description: Risk-tier classification accuracy on the representative core set.
+    description: Risk-tier classification accuracy on the core stratified set.
 
   - name: risk_tier_accuracy_adversarial
     dimension: task_success

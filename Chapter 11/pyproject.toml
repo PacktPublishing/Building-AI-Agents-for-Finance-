@@ -1,7 +1,7 @@
 [project]
 name = "kyc-eval-harness"
 version = "0.1.0"
-description = "Chapter 11 — Evaluation harness for the Chapter 9 KYC agent"
+description = "Chapter 11 — Evaluation harness for the KYC onboarding agent"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

@@ -23,3 +23,8 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+# Harness run artifacts
+Chapter 11/scorecard.json
+Chapter 11/scorecard.md
+Chapter 11/report.md

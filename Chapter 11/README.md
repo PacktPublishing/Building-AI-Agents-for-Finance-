@@ -11,10 +11,8 @@ an adapter hook lets you plug in a real implementation.
 ## Layout
 
 ```
-chapters/Chapter11/
-├── chapter.md                    # Chapter manuscript
-├── chapter.pdf                   # Rendered review PDF
-├── OUTLINE.md                    # Chapter outline
+Chapter 11/
+├── README.md                     # This file
 ├── pyproject.toml                # Python package definition
 ├── src/
 │   ├── models.py                 # Pydantic schemas (KYCCase, Scorecard, ...)
@@ -40,15 +38,14 @@ chapters/Chapter11/
 │       └── model_risk_report.py  # Model risk committee report generator
 ├── data/
 │   └── kyc_eval/                 # Sample evaluation dataset (5 segments)
-├── ci/
-│   └── github_actions.yml        # CI integration
-└── diagrams/                     # Figure sources (Graphviz .dot + .svg)
+└── ci/
+    └── github_actions.yml        # CI integration
 ```
 
 ## Quickstart
 
 ```bash
-cd chapters/Chapter11
+cd "Chapter 11"
 pip install -e .
 python -m src.eval_harness.run --segment all --output scorecard.json
 ```
@@ -127,8 +124,9 @@ pandoc report.md -o model_risk_report.pdf
   in `kyc_pipeline_adapter.py` to evaluate a real implementation.
 - **Sample dataset size.** Each segment ships with 5–6 representative
   cases — enough to exercise the harness end-to-end, not enough for a
-  production scorecard. Section 6.4 of the chapter describes the
-  ~2,050-case full dataset construction.
+  production scorecard. The chapter’s The KYC evaluation dataset
+  structure section describes the ~2,050-case full dataset
+  construction.
 - **API keys.** Without `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` set,
   the LLM-judge metric falls back to a heuristic that counts how many
   expected tool names are mentioned in the reasoning chain. Useful for

@@ -1,7 +1,8 @@
 # KYC Evaluation Dataset
 
 Sample dataset for the Chapter 11 evaluation harness. The full dataset
-(~2,050 cases — see Section 6.4 of the chapter) is built from production
+(~2,050 cases — see the chapter's The KYC evaluation dataset
+structure section) is built from production
 archives, synthetic generation, and red-team campaigns. The starter
 dataset shipped here demonstrates the schema and exercises every code
 path in the harness.

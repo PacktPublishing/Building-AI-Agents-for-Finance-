@@ -139,7 +139,7 @@ def _aggregate_metrics(
     rep_acc, rep_ci, _ = reference_metrics.risk_tier_accuracy(representative)
     adv_acc, adv_ci, _ = reference_metrics.risk_tier_accuracy(adversarial)
     sanc_recall, _, _ = reference_metrics.sanctions_recall(results)
-    # Hard rule (Section 6.3): a GOLD-LABEL confirmed sanctions match that
+    # Hard rule from the scorecard: a GOLD-LABEL confirmed sanctions match that
     # the agent does not DECLINE is a catastrophic violation regardless of
     # recall — zero the metric so the scorecard gate trips.
     rule_violations = sum(

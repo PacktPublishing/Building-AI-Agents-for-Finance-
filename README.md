@@ -2,11 +2,13 @@
 
 Code repository for *Building AI Agents for Finance* (Packt, 2026).
 
-Each chapter folder contains one or more hands-on Jupyter notebooks
+Most chapter folders contain one or more hands-on Jupyter notebooks
 named `chapter_<N>_lab_<M>_<topic>.ipynb`. Several chapters also ship
 a `common.py` with shared models, helpers, and sample data that the
 notebooks import; the notebooks auto-download `common.py` on first
-run in Colab.
+run in Colab. Chapter 11 is the exception: its evaluation harness is a
+pip-installable Python package run from the command line, with its own
+README.
 
 ## Running the labs
 
@@ -42,6 +44,8 @@ Chapter 3/        Framework comparison — one lab notebook per framework,
 Chapter 5/        Deep search agent (planner + full pipeline)
 Chapter 7/        Multi-agent systems and architectural styles
 Chapter 9/        Insurance workflows (claims, fraud, underwriting)
+Chapter 11/       KYC evaluation harness — a pip-installable package run
+                  from the CLI rather than notebooks; see its own README
 .env.sample       Template for local-execution API keys
 ```
 
@@ -49,8 +53,8 @@ Chapter 9/        Insurance workflows (claims, fraud, underwriting)
 
 | Key | Required by |
 | --- | --- |
-| `OPENAI_API_KEY` | Ch 1, 2, 3, 5, 7, 9 (most labs) |
-| `ANTHROPIC_API_KEY` | Ch 1 Lab 1, Ch 3 Lab 7 |
+| `OPENAI_API_KEY` | Ch 1, 2, 3, 5, 7, 9 (most labs); optional for Ch 11's LLM judge |
+| `ANTHROPIC_API_KEY` | Ch 1 Lab 1, Ch 3 Lab 7; optional for Ch 11's LLM judge |
 | `GOOGLE_API_KEY` | Ch 1 Lab 1, Ch 3 Lab 2 |
 | `MISTRAL_API_KEY` | Ch 3 Lab 8 |
 | `NEWS_API_KEY` | Ch 1 Lab 3 |

@@ -15,7 +15,8 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0", "ruff>=0.5"]
-# Production observability/eval layer discussed in the chapter's Section 4;
+# Production observability/eval layer discussed in the chapter's
+# Frameworks and tooling for agent evaluation section;
 # not required to run the self-contained lab harness.
 production = ["langfuse>=2.40", "deepeval>=1.0"]
 

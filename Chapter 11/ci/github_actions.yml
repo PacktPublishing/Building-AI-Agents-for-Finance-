@@ -8,13 +8,13 @@ name: kyc-eval
 on:
   pull_request:
     paths:
-      - "chapters/Chapter11/**"
-      - "chapters/Chapter09/**"  # KYC pipeline source
+      - "Chapter 11/**"
+      - "Chapter 9/**"  # KYC pipeline source
   push:
     branches: [main]
     paths:
-      - "chapters/Chapter11/**"
-      - "chapters/Chapter09/**"
+      - "Chapter 11/**"
+      - "Chapter 9/**"
 
 jobs:
   scorecard:
@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 20
     defaults:
       run:
-        working-directory: chapters/Chapter11
+        working-directory: Chapter 11
 
     steps:
       - uses: actions/checkout@v4
@@ -54,8 +54,8 @@ jobs:
         with:
           name: kyc-scorecard
           path: |
-            chapters/Chapter11/scorecard.json
-            chapters/Chapter11/scorecard.md
+            Chapter 11/scorecard.json
+            Chapter 11/scorecard.md
 
       - name: Generate model risk report
         if: always()
@@ -68,10 +68,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: model-risk-report
-          path: chapters/Chapter11/model_risk_report.md
+          path: Chapter 11/model_risk_report.md
 
       - name: Comment scorecard summary on PR
         if: github.event_name == 'pull_request' && always()
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-          path: chapters/Chapter11/scorecard.md
+          path: Chapter 11/scorecard.md

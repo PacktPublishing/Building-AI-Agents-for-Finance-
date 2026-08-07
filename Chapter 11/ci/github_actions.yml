@@ -9,12 +9,10 @@ on:
   pull_request:
     paths:
       - "Chapter 11/**"
-      - "Chapter 9/**"  # KYC pipeline source
   push:
     branches: [main]
     paths:
       - "Chapter 11/**"
-      - "Chapter 9/**"
 
 jobs:
   scorecard:
